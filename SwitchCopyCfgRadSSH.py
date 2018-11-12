@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 #################################################
 #   Remote download of switches configuration   #
-#          wesion 1.20 28.03.2018r.             #
-#   For switches  connected to Radius           #
+#          wersion 1.20 28.03.2018r.            #
+#   For switches connected to Radius with ssh   #
 #################################################
 
 import os
@@ -21,15 +21,15 @@ kat_log = ""
 #        List of supported switches          #
 #********************************************#
 LISTA = [
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
-	["<adres ip>", "<nazwa switch-a>",    "<uzytkownik>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
+	["<adres ip>", "<nazwa switcha>", "<hasło>"],
 ]
 
 
@@ -59,11 +59,11 @@ def arch_kom(host, kat_cel):
 	return komenda
 
 def rem_kom(adres, host, sciez_log, kat_cel, uzyt, haslo):
-	child = pexpect.spawnu("telnet " + adres)
+	child = pexpect.spawnu("ssh "+uzyt+"@"+ adres)
 	child.logfile = open(sciez_log + log_nazwa(adres), "w")
-	child.expect("ISE Username:")
+	child.expect(".*sername:")
 	child.send(uzyt+"\r")	
-	child.expect("ISE Password:")
+	child.expect(".*assword:")
 	child.send(haslo+"\r")
 	child.expect(".*#")
 	child.sendline(arch_kom(host, kat_cel)+"\r")

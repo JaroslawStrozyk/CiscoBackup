@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #################################################
-#   remote download of switches configuration   #
-#           wersion 1.00 12.11.2016r.           #
+#   Remote download of switches configuration   #
+#          wersion 1.10 28.03.2018r.            #
 #   For switches not connected to Radius        #
 #################################################
 
@@ -12,7 +12,7 @@ from datetime import datetime
 
 sciezka = "/opt/magazyn/pliki_serwis/"
 sciez_log = sciezka + "LOGI/TFTP/"
-sciez_dane_gl = sciezka + "TFTP/"
+sciez_dane_gl = sciezka + "SIEC/"
 kat_cel = ""
 
 #********************************************#
@@ -70,7 +70,7 @@ def rem_kom(adres, host, sciez_log, kat_cel, haslo):
 kat_cel = kat_nazwa(sciez_dane_gl)
 sciez_dane = sciez_dane_gl + kat_cel
 
-# Main 
+#  Main
 
 n = 0
 while n < len(LISTA):
